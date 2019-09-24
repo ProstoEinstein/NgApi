@@ -56,7 +56,7 @@ namespace NgApi.Controllers
         }
 
 
-        [HttpGet("GetOrder/{}", Name = "GetOrder")]
+        [HttpGet("GetOrder/{id}", Name = "GetOrder")]
         public IActionResult GetOrder(int id)
         {
             var order = ctx.Orders.Include(o => o.Customer).First(o => o.Id == id);

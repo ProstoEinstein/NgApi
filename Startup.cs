@@ -17,7 +17,7 @@ namespace NgApi
 {
     public class Startup
     {
-        public string connectionString { get; set; }         
+        public string connectionString { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +27,8 @@ namespace NgApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opt => opt.AddPolicy("CorsPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
             connectionString = Configuration["secretConnectionString"];
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(
             options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -40,6 +42,7 @@ namespace NgApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("CorsPolicy");
             }
             else
             {
@@ -47,7 +50,7 @@ namespace NgApi
             }
 
             seed.SeedData(20, 1000);
-            
+
 
             app.UseHttpsRedirection();
             app.UseMvc(routes => routes.MapRoute(
