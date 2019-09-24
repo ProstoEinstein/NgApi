@@ -1,0 +1,14 @@
+D:\Projects\NgApi\bin\Debug\netcoreapp2.2\NgApi.deps.json
+D:\Projects\NgApi\bin\Debug\netcoreapp2.2\NgApi.runtimeconfig.json
+D:\Projects\NgApi\bin\Debug\netcoreapp2.2\NgApi.runtimeconfig.dev.json
+d:\Projects\NgApi\bin\Debug\netcoreapp2.2\NgApi.dll
+d:\Projects\NgApi\bin\Debug\netcoreapp2.2\NgApi.pdb
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.csprojAssemblyReference.cache
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.csproj.CoreCompileInputs.cache
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.RazorAssemblyInfo.cache
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.RazorAssemblyInfo.cs
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.AssemblyInfoInputs.cache
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.AssemblyInfo.cs
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.RazorTargetAssemblyInfo.cache
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.dll
+d:\Projects\NgApi\obj\Debug\netcoreapp2.2\NgApi.pdb
