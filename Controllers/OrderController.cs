@@ -19,7 +19,7 @@ namespace NgApi.Controllers
         [HttpGet("{pageIndex:int}/{pageSize:int}")]
         public IActionResult Get(int pageIndex, int pageSize)
         {
-            var data = ctx.Orders.Include(o => o.Customer).OrderByDescending(c => c.Placed);
+            var data = ctx.Orders.Include(o => o.Customer).OrderByDescending(c => c.Id);
             var page = new PaginatedResponse<Order>(data, pageIndex, pageSize);
             var totalCount = data.Count();
             var totalPages = Math.Ceiling((double)totalCount / pageSize);
@@ -62,5 +62,7 @@ namespace NgApi.Controllers
             var order = ctx.Orders.Include(o => o.Customer).First(o => o.Id == id);
             return Ok(order);
         }
+
+        
     }
 }

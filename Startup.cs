@@ -28,11 +28,11 @@ namespace NgApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(opt => opt.AddPolicy("CorsPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
-
-            connectionString = Configuration["secretConnectionString"];
+            connectionString = string.Format("Host=localhost;Port=5432;Database=docker_test;Username=postgres;Password=123;Pooling=true;", Environment.GetEnvironmentVariable("POSTGRES_HOST"));
+            System.Console.WriteLine("========================>>>>\t{0}\t<<<<========================", connectionString);
+            //connectionString = Configuration["secretConnectionString"];
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(
             options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            //services.AddDbContext<ApiContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DataAccessPostgreSqlProvider")));
             services.AddDbContext<ApiContext>(options => options.UseNpgsql(connectionString));
             services.AddTransient<DataSeed>();
         }
@@ -48,7 +48,7 @@ namespace NgApi
             {
                 app.UseHsts();
             }
-
+            app.UseCors("CorsPolicy");
             seed.SeedData(20, 1000);
 
 

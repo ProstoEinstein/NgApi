@@ -1,20 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS base
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
-WORKDIR /src
-COPY ["NgApi.csproj", "./"]
-RUN dotnet restore "./NgApi.csproj"
-COPY . .
-WORKDIR "/src/."
-RUN dotnet build "NgApi.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "NgApi.csproj" -c Release -o /app/publish
-
-FROM base AS final
+COPY *.csproj ./
+RUN dotnet restore NgApi.csproj
+COPY . ./
+RUN dotnet publish NgApi.csproj -c Release -o out
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NgApi.dll"]
+COPY — from=build /app/out/
+ENTRYPOINT [“dotnet”, NgApi.dll”]`

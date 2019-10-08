@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using NgApi.Models;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace NgApi.Controllers
 {
@@ -50,6 +52,13 @@ namespace NgApi.Controllers
             }
             ctx.SaveChanges();
             return new NoContentResult();
+        }
+
+        [HttpPost, DisableRequestSizeLimit]
+        public async Task UploadFiles()
+        {
+            System.Console.WriteLine("Скачал");
+            var files = Request.Form.Files; // now you have them
         }
     }
 }

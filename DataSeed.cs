@@ -16,25 +16,31 @@ namespace NgApi
 
         public void SeedData(int nCustomers, int nOrders)
         {
-            if (!apiContext.Customers.Any())
-            {
-                SeedCustomers(nCustomers);
-                apiContext.SaveChanges();
+           try
+           {
+                if (!apiContext.Customers.Any())
+                {
+                    SeedCustomers(nCustomers);
+                    apiContext.SaveChanges();
 
-            }
-            if (!apiContext.Orders.Any())
-            {
-                SeedOrders(nOrders);
-                apiContext.SaveChanges();
+                }
+                if (!apiContext.Orders.Any())
+                {
+                    SeedOrders(nOrders);
+                    apiContext.SaveChanges();
 
-            }
-            if (!apiContext.Servers.Any())
-            {
-                SeedServers();
-                apiContext.SaveChanges();
+                }
+                if (!apiContext.Servers.Any())
+                {
+                    SeedServers();
+                    apiContext.SaveChanges();
 
-            }
-
+                }
+           }
+           catch (System.Exception)
+           {
+                
+           }
         }
 
         private void SeedOrders(int nOrders)
