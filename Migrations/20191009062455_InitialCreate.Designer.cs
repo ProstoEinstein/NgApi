@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NgApi.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20190924111137_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20191009062455_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

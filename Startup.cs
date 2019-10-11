@@ -28,7 +28,7 @@ namespace NgApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(opt => opt.AddPolicy("CorsPolicy", c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
-            connectionString = string.Format("Host=localhost;Port=5432;Database=docker_test;Username=postgres;Password=123;Pooling=true;", Environment.GetEnvironmentVariable("POSTGRES_HOST"));
+            connectionString = string.Format("Host={0};Port=5432;Database=docker_test;Username=postgres;Password=123;Pooling=true;", Environment.GetEnvironmentVariable("POSTGRES_HOST"));
             System.Console.WriteLine("========================>>>>\t{0}\t<<<<========================", connectionString);
             //connectionString = Configuration["secretConnectionString"];
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(
@@ -37,7 +37,7 @@ namespace NgApi
             services.AddTransient<DataSeed>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataSeed seed)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -49,7 +49,7 @@ namespace NgApi
                 app.UseHsts();
             }
             app.UseCors("CorsPolicy");
-            seed.SeedData(20, 1000);
+            //seed.SeedData(20, 200);
 
 
             app.UseHttpsRedirection();
